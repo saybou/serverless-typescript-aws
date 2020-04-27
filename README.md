@@ -43,6 +43,20 @@ npm install
 
 ## Set up step by step
 
+### Requirements
+
+- Node.js
+
+Use our node container (set up in `docker-compose.yml`)
+
+Or install Node 12 : [https://nodejs.org/en/](https://nodejs.org/en/)
+
+- Serverless
+
+```bash
+npm install -g serverless
+```
+
 ### Project initialization
 
 Let's start to initialize our project with the Serverless template "aws-nodejs-typescript"
