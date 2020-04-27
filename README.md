@@ -230,7 +230,7 @@ aws_secret_access_key = XXX
 region = XXX
 ```
 
-Set this profile in you `serverless.yml` so Serverless can use it for deployment.
+Set this profile in your `serverless.yml` so Serverless can use it for deployment.
 
 ```yaml
 provider:
