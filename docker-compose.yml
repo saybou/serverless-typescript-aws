@@ -1,0 +1,11 @@
+version: '3'
+services:
+  node:
+    container_name: node
+    image: node:12-alpine
+    volumes:
+      - .:/var/www/serverless-aws-example
+    ports:
+      - 3000:3000
+    tty: true
+    stdin_open: true

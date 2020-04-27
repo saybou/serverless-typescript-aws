@@ -1,0 +1,41 @@
+{
+  "name": "serverless-aws-example",
+  "version": "1.0.0",
+  "description": "Serverless project example for AWS. Built with Node.js, Serverless, Webpack and Typescript.",
+  "keywords": [
+    "Serverless",
+    "AWS",
+    "Lambda",
+    "Node.js",
+    "Typescript"
+  ],
+  "main": "handler.js",
+  "scripts": {
+    "lint": "eslint . --ext js,ts --cache --fix",
+    "prettier": "prettier --list-different './**/*.{js,ts}'",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "source-map-support": "^0.5.10"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.17",
+    "@types/node": "^10.12.18",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "fork-ts-checker-webpack-plugin": "^3.0.1",
+    "prettier": "^2.0.5",
+    "serverless": "^1.68.0",
+    "serverless-webpack": "^5.2.0",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.2.4",
+    "webpack": "^4.29.0",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "author": "Sébastien Poyer",
+  "license": "ISC"
+}
