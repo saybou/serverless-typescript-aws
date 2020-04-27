@@ -1,5 +1,9 @@
 # Serverless AWS example
 
+This is a Serverless project example using Typescript, ready for [AWS Lambda](https://aws.amazon.com/lambda) and [API Gateway](https://aws.amazon.com/api-gateway/).
+
+You need to have an AWS account, to create a dedicated IAM User with credentials so Serverless can deploy your app. ([Configure AWS credentials](#-configure-aws-credentials))
+
 ## Stack
 
 - [Node.js](https://nodejs.org/en/) 12x
@@ -208,7 +212,7 @@ npm run prettier
 npm run typecheck
 ```
 
-## Config AWS Credentials
+## Configure AWS Credentials
 
 ### Create IAM user for Serverless
 
