@@ -355,7 +355,7 @@ You should get this error...
 It's enough explicit :)  
 So we now need to give this IAM User permission.
 
----
+-
 
 Let's go back to AWS Console, and create a new IAM Group `serverless-deploy` without any policy.
 
@@ -376,13 +376,13 @@ Let's now try to deploy again
 serverless deploy -v
 ```
 
-Now you should have the following new error. So we now need a new policy.
+Now you should have the following new error.
 
 `serverless-deploy is not authorized to perform: cloudformation:CreateStack on resource`
 
 We have to edit our policy and add some new permissions.
 
----
+-
 
 Go back to the `serverless-deploy` policy we created, edit it and add the _CreateStack_ permission for CloudFormation service.
 
