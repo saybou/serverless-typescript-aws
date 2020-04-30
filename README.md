@@ -337,12 +337,12 @@ serverless remove
 
 Here we want to create a new IAM Policy, attach it to a new IAM group to which we will attach our new user.
 
-Let's go to Identity and Access Management (IAM) and create a new User `serverless-deploy` with Programatic access.
+Let's go to _Identity and Access Management (IAM)_ service and create a new User `serverless-deploy` with Programatic access.
 Give it no permissions.
 
-See how to use your user credentials : [Use your user credentials](#use-your-user-credentials)
+You can find how to use your user credentials with Serverless here : [Use your user credentials](#use-your-user-credentials)
 
-Then try to deploy your serverless function
+Then try to deploy your serverless app
 
 ```bash
 serverless deploy -v
@@ -352,16 +352,22 @@ You should get this error...
 
 `serverless-deploy is not authorized to perform: cloudformation:DescribeStacks`
 
-It's enough explicit :)
+It's enough explicit :)  
 So we now need to give this IAM User permission.
+
+---
 
 Let's go back to AWS Console, and create a new IAM Group `serverless-deploy` without any policy.
 
-Now, create a new IAM Policy. Add a policy for the CloudFormation service, allow _List:DescribeStacks_ action. Indicate to apply this policy to all resources and click _Review Policy_ button.
-Name this policy `serverless-deploy` (just for consistency).
-_(If necessary, you can specify specific ressources to apply your actions)_
+Let's now create a new IAM Policy :
 
-Now go back to the group we created and attach it this policy.
+- Create a new IAM Policy
+- Add a policy for the CloudFormation service, allow _List:DescribeStacks_ action.
+- Indicate to apply this permission to all resources and click _Review Policy_ button.  
+  _(If necessary, you can specify specific ressources to apply the permissions)_
+- Name this policy `serverless-deploy` (just for consistency) and finish to create it.
+
+Now go back to the group we created and attach it this policy.  
 Then go back to the user `serverless-deploy` and attach it to the group.
 
 Let's now try to deploy again
@@ -374,10 +380,17 @@ Now you should have the following new error. So we now need a new policy.
 
 `serverless-deploy is not authorized to perform: cloudformation:CreateStack on resource`
 
+We have to edit our policy and add some new permissions.
+
+---
+
 Go back to the `serverless-deploy` policy we created, edit it and add the _CreateStack_ permission for CloudFormation service.
 
-You can try to deploy again, and add each missing policy. This is the best way to be sure to add only the necessary permissions.
-(Step by step, it will sometimes be necessary to delete resources manually to be able to test a deployment again.)
+You can try to deploy again, and add each missing policy.
+This is the best way to be sure to add only the necessary permissions.  
+Step by step, it will sometimes be necessary to delete resources manually to be able to test a deployment again.
+
+### Basic policy example
 
 For this example project, you can find the minimum permissions required here : [IAM.json](https://github.com/saybou/serverless-typescript-aws/blob/master/IAM.json)
 
