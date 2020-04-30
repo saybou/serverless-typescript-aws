@@ -1,4 +1,4 @@
-# Serverless AWS example
+# Serverless Typescript AWS
 
 This is a Serverless project example using Typescript, ready for [AWS Lambda](https://aws.amazon.com/lambda) and [API Gateway](https://aws.amazon.com/api-gateway/).
 
