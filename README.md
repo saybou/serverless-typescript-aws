@@ -26,7 +26,7 @@ You can clone this repo and use it with docker, or jump to the next section and 
 
 ```bash
 # host project dir
-cd serverless-aws-example
+cd serverless-typescript-aws
 
 # Up container
 docker-compose up -d
@@ -35,7 +35,7 @@ docker-compose up -d
 docker exec -ti node sh
 
 # container project dir
-cd /var/www/serverless-aws-example
+cd /var/www/serverless-typescript-aws
 
 # install dependencies
 npm install
