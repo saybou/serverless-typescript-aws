@@ -263,10 +263,7 @@ Here is our final `serverless.yml` :
 
 ```yaml
 service:
-  name: my-service
-# app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
+  name: serverless-typescript-aws
 
 custom:
   webpack:
@@ -386,7 +383,7 @@ We have to edit our policy and add some new permissions.
 
 Go back to the `serverless-deploy` policy we created, edit it and add the _CreateStack_ permission for CloudFormation service.
 
-You can try to deploy again, and add each missing policy.
+You can try to deploy again, and add each missing policy.  
 This is the best way to be sure to add only the necessary permissions.  
 Step by step, it will sometimes be necessary to delete resources manually to be able to test a deployment again.
 
