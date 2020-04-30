@@ -1,5 +1,5 @@
 service:
-  name: resize
+  name: serverless-typescript-aws
 
 custom:
   webpack:
@@ -13,7 +13,7 @@ plugins:
 provider:
   name: aws
   runtime: nodejs12.x
-  profile: serverless-admin
+  profile: serverless-deploy
   apiGateway:
     minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
   environment:

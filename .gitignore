@@ -11,3 +11,5 @@ jspm_packages
 serverless.custom.yml
 
 .eslintcache
+
+.aws

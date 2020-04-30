@@ -4,7 +4,7 @@ services:
     container_name: node
     image: node:12-alpine
     volumes:
-      - .:/var/www/serverless-aws-example
+      - .:/var/www/serverless-typescript-aws
     ports:
       - 3000:3000
     tty: true

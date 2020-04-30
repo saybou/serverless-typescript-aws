@@ -226,19 +226,25 @@ npm run prettier
 npm run typecheck
 ```
 
-## Configure AWS Credentials
+## Configure AWS Credentials (Quick way)
+
+This is the quick way to set up a user for Serverless.
+
+Here is a better way : [Configure AWS Credentials (Better way)](#configure-aws-credentials-better-way)
 
 ### Create IAM user for Serverless
 
 - Login to AWS and navigate to IAM
-- Create a new user called serverless-admin
-- Give serverless-admin Programatic access
+- Create a new user called serverless-deploy
+- Give serverless-deploy Programatic access
 - Attach the AdministratorAccess policy
+
+### Use your user credentials
 
 Save your new AWS profile into `~/.aws/credentials` (Don't forget to set your values :D) :
 
-```test
-[serverless-admin]
+```text
+[serverless-deploy]
 aws_access_key_id = XXX
 aws_secret_access_key = XXX
 region = XXX
@@ -248,7 +254,7 @@ Set this profile in your `serverless.yml` so Serverless can use it for deploymen
 
 ```yaml
 provider:
-  profile: serverless-admin
+  profile: serverless-deploy
 ```
 
 (or pass it with `--profile` argument to `serverless deploy`command.)
@@ -274,7 +280,7 @@ plugins:
 provider:
   name: aws
   runtime: nodejs12.x
-  profile: serverless-admin
+  profile: serverless-deploy
   apiGateway:
     minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
   environment:
@@ -324,6 +330,56 @@ You can test it with your API Gateway end point : `https://xxxxxx.execute-api.us
 ```bash
 serverless remove
 ```
+
+## Configure AWS Credentials (Better way)
+
+### Create IAM user, IAM group and IAM Policy
+
+Here we want to create a new IAM Policy, attach it to a new IAM group to which we will attach our new user.
+
+Let's go to Identity and Access Management (IAM) and create a new User `serverless-deploy` with Programatic access.
+Give it no permissions.
+
+See how to use your user credentials : [Use your user credentials](#use-your-user-credentials)
+
+Then try to deploy your serverless function
+
+```bash
+serverless deploy -v
+```
+
+You should get this error...
+
+`serverless-deploy is not authorized to perform: cloudformation:DescribeStacks`
+
+It's enough explicit :)
+So we now need to give this IAM User permission.
+
+Let's go back to AWS Console, and create a new IAM Group `serverless-deploy` without any policy.
+
+Now, create a new IAM Policy. Add a policy for the CloudFormation service, allow _List:DescribeStacks_ action. Indicate to apply this policy to all resources and click _Review Policy_ button.
+Name this policy `serverless-deploy` (just for consistency).
+_(If necessary, you can specify specific ressources to apply your actions)_
+
+Now go back to the group we created and attach it this policy.
+Then go back to the user `serverless-deploy` and attach it to the group.
+
+Let's now try to deploy again
+
+```bash
+serverless deploy -v
+```
+
+Now you should have the following new error. So we now need a new policy.
+
+`serverless-deploy is not authorized to perform: cloudformation:CreateStack on resource`
+
+Go back to the `serverless-deploy` policy we created, edit it and add the _CreateStack_ permission for CloudFormation service.
+
+You can try to deploy again, and add each missing policy. This is the best way to be sure to add only the necessary permissions.
+(Step by step, it will sometimes be necessary to delete resources manually to be able to test a deployment again.)
+
+For this example project, you can find the minimum permissions required here : [IAM.json](https://github.com/saybou/serverless-typescript-aws/blob/master/IAM.json)
 
 ## Add JEST for testing
 
