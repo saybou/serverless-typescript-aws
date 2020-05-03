@@ -354,7 +354,7 @@ So we now need to give this IAM User permission.
 
 //
 
-Let's go back to AWS Console, and create a new IAM Group `serverless-deploy` without any policy.
+Let's go back to AWS Console, and create a new IAM Group `serverless-deploy-group` without any policy.
 
 Let's now create a new IAM Policy :
 
@@ -362,10 +362,10 @@ Let's now create a new IAM Policy :
 - Add a policy for the CloudFormation service, allow _List:DescribeStacks_ action.
 - Indicate to apply this permission to all resources and click _Review Policy_ button.  
   _(If necessary, you can specify specific ressources to apply the permissions)_
-- Name this policy `serverless-deploy` (just for consistency) and finish to create it.
+- Name this policy `serverless-deploy-policy` (just for consistency) and finish to create it.
 
-Now go back to the group we created and attach it this policy.  
-Then go back to the user `serverless-deploy` and attach it to the group.
+Now go back to the group `serverless-deploy-group` we created and attach it this policy.  
+Then go back to the user `serverless-deploy` and attach it to the group `serverless-deploy-group`.
 
 Let's now try to deploy again
 
@@ -381,7 +381,7 @@ We have to edit our policy and add some new permissions.
 
 //
 
-Go back to the `serverless-deploy` policy we created, edit it and add the _CreateStack_ permission for CloudFormation service.
+Go back to the `serverless-deploy-policy` policy we created, edit it and add the _CreateStack_ permission for CloudFormation service.
 
 You can try to deploy again, and add each missing policy.  
 This is the best way to be sure to add only the necessary permissions.  
